@@ -1,9 +1,10 @@
 'use strict'
 const api = require('express').Router()
+const path = require('path');
 /**
  * Send Header Details, PO LINES & Documents in One Request
  */
-const ListCCustomerController = require('../../controllers/front/view/build/index.html')
+const ListCCustomerController = '../../build/index.html';
 
 
 // const CustomerForUserid = require('../../controllers/listCustomerForId')
@@ -20,19 +21,8 @@ module.exports = (()=>{
 
 
 
-     app.get('/frontview', function(req, res){
-      var options = {
-          root: path.join(__dirname)
-      };
-        
-      var fileName = ListCCustomerController;
-      res.sendFile(fileName, options, function (err) {
-          if (err) {
-              next(err);
-          } else {
-              console.log('Sent:', fileName);
-          }
-      });
+     api.get('/frontview', function(req, res){
+      res.sendFile(path.join(__dirname, ListCCustomerController));
   });
    
 
